@@ -6,22 +6,32 @@ The repo must keep building with `npm run build` and deploy to **Vercel** with z
 
 - **Vite + React + TypeScript**
 - **Tailwind CSS v4** via `@tailwindcss/vite` (already configured; styles in `src/index.css`)
-- **Routing**: `react-router-dom` (`BrowserRouter`) when there are 2+ screens.
+- **Routing**: `react-router-dom` (`BrowserRouter`), already set up. Routes are generated in `src/App.tsx` from
+  `src/prototype/registry.ts`; register a screen there instead of adding a `<Route>` by hand.
   `vercel.json` already rewrites all paths to `index.html`, so deep links work.
-- No other dependencies without a reason written in `project/BRIEF.md`.
+- No other dependencies without a reason written in `project/BRIEF.md`. The one pre-approved exception:
+  `lucide-react` when the brief Fidelity is Mid-fi (Memorisely).
+- No shadcn/ui, Radix, or animation libraries. `guidelines/design-system/README.md` maps them to native HTML.
 
 ## Folder structure
 
 ```
 src/
   main.tsx            # entry, do not rename
-  App.tsx             # router + layout shell
-  index.css           # Tailwind import + tiny base styles
-  components/         # shared UI: Placeholder, Note, PhoneFrame, nav, buttons…
-  screens/            # one file per screen: DashboardScreen.tsx, SettingsScreen.tsx…
+  App.tsx             # router, generated from the registry (rarely edited)
+  index.css           # Tailwind import, base styles, design tokens (@theme) for Mid-fi
+  prototype/
+    registry.ts       # THE prototype registry: user types, flows, screens, routes, shortcuts
+    types.ts          # registry data model
+    derive.ts         # derived views (ordering, steps, grouping)
+    validate.ts       # integrity checks shown on Prototype Home
+    PrototypeHome.tsx # Prototype Flows / All Prototype Screens / Developer shortcuts
+    FlowBar.tsx       # flow navigation above each screen
+  components/         # shared UI: Placeholder, Note, PhoneFrame, app shell/nav, buttons…
+  screens/            # one file per screen: DashboardScreen.tsx… every file here must be registered
   data/               # typed mock data
 project/
-  BRIEF.md            # the filled-in brief (source of truth)
+  BRIEF.md            # the filled-in brief (product source of truth)
 ```
 
 ## Rules

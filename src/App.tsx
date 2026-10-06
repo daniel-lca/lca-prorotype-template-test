@@ -1,17 +1,56 @@
-import { Note } from './components/Note';
-import { Placeholder } from './components/Placeholder';
+import { BrowserRouter, Link, Navigate, Route, Routes, useParams } from 'react-router-dom';
+import { flowById, flowStartRoute } from './prototype/derive';
+import { FlowBar } from './prototype/FlowBar';
+import { PrototypeHome } from './prototype/PrototypeHome';
+import { registry } from './prototype/registry';
 
-// Placeholder screen. The AI builder replaces this after the brief in project/BRIEF.md is confirmed.
+// Routes are generated from src/prototype/registry.ts. Do not add screen routes by hand here.
+//   /                 Prototype Home
+//   /flow/:flowId     stable link that opens a flow's start screen
+//   <screen.route>    one route per registered screen
+
+function FlowEntry() {
+  const { flowId = '' } = useParams();
+  const flow = flowById(flowId);
+  const route = flow && flowStartRoute(flow);
+  return route ? <Navigate to={route} replace /> : <NotFound />;
+}
+
+function NotFound() {
+  return (
+    <main className="mx-auto max-w-2xl p-6">
+      <h1 className="text-2xl font-semibold">Screen not found</h1>
+      <p className="mt-2 text-neutral-600">This route is not registered in the prototype.</p>
+      <Link to="/" className="mt-4 inline-block underline">
+        Go to prototype home
+      </Link>
+    </main>
+  );
+}
+
 export default function App() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center gap-6 p-6">
-      <h1 className="text-2xl font-semibold">Lo-fi prototype template</h1>
-      <p className="text-neutral-600">
-        Nothing is built yet. Start the intake in AI Studio with the prompt in{' '}
-        <code className="rounded bg-neutral-200 px-1">KICKOFF_PROMPT.md</code>.
-      </p>
-      <Placeholder label="Your first screen goes here" className="h-48" />
-      <Note>This screen is replaced once the brief is confirmed.</Note>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PrototypeHome />} />
+        <Route path="/flow/:flowId" element={<FlowEntry />} />
+        {registry.screens.map((screen) => {
+          const ScreenComponent = screen.component;
+          return (
+            <Route
+              key={screen.id}
+              path={screen.route}
+              element={
+                <>
+                  <FlowBar screen={screen} />
+                  <ScreenComponent />
+                </>
+              }
+            />
+          );
+        })}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

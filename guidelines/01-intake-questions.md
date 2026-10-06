@@ -27,6 +27,9 @@ Ask these **phase by phase**. For each phase:
 3. **Fidelity level**
    - Lo-fi wireframe: grayscale, boxes, placeholder imagery **(default)**
    - Lo-fi+: grayscale layout with one accent color and real-looking copy
+   - Mid-fi (Memorisely): the team design system: Slate + Violet tokens, Lucide icons, real states and
+     light motion. See `guidelines/design-system/README.md`.
+   - If Mid-fi: **Dark mode too?** Yes / No **(default: No, light only)**
 4. **Navigation pattern** (skip for single-page websites)
    - Top nav bar · Sidebar · Bottom tab bar (mobile) · Let the AI decide from the category **(default)**
 5. **Language of the UI copy**: English **(default)** / Spanish / other.
@@ -36,22 +39,29 @@ Ask these **phase by phase**. For each phase:
 
 7. **One-sentence pitch**: what is it and who is it for?
 8. **Primary users / roles**: list each role and what they come to do. (e.g. "Admin — manages users", "Customer — books appointments")
-9. **Core flows** (the 1–3 journeys the prototype must demonstrate end to end).
+   Each role becomes a **user type** in the prototype registry, so every flow belongs to exactly one.
+9. **Core flows** (the 1–3 journeys the prototype must demonstrate end to end), and which role does each.
    Example: "Customer signs up → picks a service → books a slot → sees confirmation".
+   Name each flow by the user's goal ("Book an appointment"), not by UI type ("Forms").
 10. **Screens / pages list**: list what you already know. The AI will propose missing ones.
 11. **Key content or data per screen**: what information must be visible? (tables, cards, forms, charts…)
 12. **Key interactions**: modals, filters, multi-step forms, drag and drop, search, etc.
+13. **Product rules**: permissions, limits, approvals, required information, role-specific behavior.
+    Also: which edge cases or states should reviewers be able to open directly (empty, error, rejected…)?
 
 ## Phase 3 — Scope & references
 
-13. **Out of scope**: anything the prototype must NOT include.
-14. **References**: links or names of products/sites whose layout or flow you like.
-15. **Anything else**: deadlines, the audience for the demo (client, internal, investors), must-have details.
+14. **Out of scope**: anything the prototype must NOT include.
+15. **References**: links or names of products/sites whose layout or flow you like.
+16. **Anything else**: deadlines, the audience for the demo (client, internal, investors), must-have details.
 
 ---
 
 ## After Phase 3
 
-1. Propose the final **screen list** and the **click path** for each core flow.
-2. Fill `project/BRIEF.md` with every answer, marking assumptions as `(assumed)`.
+1. Propose the prototype structure: **user types → flows → ordered screens**, with the start screen and
+   route of each flow, plus any directly openable states (variants) and developer shortcuts.
+   Use the naming rules in `05-prototype-schema.md` §6.
+2. Fill `project/BRIEF.md` with every answer, marking assumptions as `(assumed)`. Anything still undecided
+   goes under "Open questions" instead of being invented.
 3. Show a summary of 10 lines or fewer and ask: **"Build it? (go / change something)"**.

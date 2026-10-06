@@ -1,7 +1,11 @@
 # LCA lo-fi prototype template
 
-Starting point for low-fidelity clickable prototypes built in **Google AI Studio (Build mode)**,
+Starting point for clickable prototypes built in **Google AI Studio (Build mode)**,
 kept in GitHub and deployed to **Vercel**.
+
+**Core principle:** a prototype screen is never an isolated artifact. Every screen is registered in one
+prototype registry (`src/prototype/registry.ts`), and the Prototype Home at `/` lists every flow and every
+screen from that registry, grouped by user type. If the registry is out of sync, Prototype Home says so.
 
 ## How to start a new prototype
 
@@ -10,7 +14,7 @@ kept in GitHub and deployed to **Vercel**.
 3. **Paste the kickoff prompt** from [`KICKOFF_PROMPT.md`](KICKOFF_PROMPT.md) as your first message.
    AI Studio reads the guidelines and runs the intake in three phases:
    1. Project type & setup (category, breakpoints, fidelity, navigation, language)
-   2. The product (users, core flows, screens, content, interactions)
+   2. The product (user types, flows, screens, content, interactions, product rules)
    3. Scope & references
 4. **Confirm the brief** that AI Studio writes to [`project/BRIEF.md`](project/BRIEF.md). It builds after you say "go".
 5. **Sync to GitHub** from AI Studio (Settings → GitHub → push).
@@ -22,9 +26,22 @@ kept in GitHub and deployed to **Vercel**.
 |---|---|
 | `AGENTS.md` | Entry point for the AI: rules and reading order |
 | `KICKOFF_PROMPT.md` | First message to paste in AI Studio |
-| `guidelines/` | Intake questions, lo-fi visual rules, tech & deploy rules |
+| `guidelines/01`–`03` | Intake questions, lo-fi visual rules, tech & deploy rules |
+| `guidelines/04`–`08` | Prototype system: Prototype Home, registry schema, screen/flow lifecycle, UX rules, AI workflow |
+| `guidelines/design-system/` | Memorisely design rules (accessibility, interactions, status, color, radius…) and when each applies |
 | `project/BRIEF.md` | The brief, filled in during intake |
-| `src/components/` | `Placeholder`, `Note`, `PhoneFrame` lo-fi building blocks |
+| `src/prototype/` | Registry, validation, Prototype Home, flow bar |
+| `src/components/` | `Placeholder`, `Note`, `PhoneFrame` building blocks |
+
+## Fidelity levels
+
+| Level | Look |
+|---|---|
+| Lo-fi (default) | Grayscale wireframe, placeholder boxes |
+| Lo-fi+ | Grayscale plus one accent color, real-looking copy |
+| Mid-fi (Memorisely) | Team design system: Slate + Violet tokens, Lucide icons, optional dark mode |
+
+Behavior rules (accessibility, interaction states, system status, progressive disclosure, responsive) apply at every level.
 
 ## Local dev
 

@@ -2,6 +2,12 @@
 
 The prototype exists to validate **structure and flow**. Visual polish is out of scope.
 
+These rules cover the **Lo-fi** and **Lo-fi+** fidelity levels. If the brief says **Mid-fi (Memorisely)**, the
+"Visual" section below is replaced by the visual files in `guidelines/design-system/` (color, radius, icons,
+motion, light/dark). Content, Behavior, Breakpoints, and Wireframe notes still apply at every fidelity, and so do
+the behavior files in `guidelines/design-system/` (accessibility, interactions, system status, progressive
+disclosure, responsive).
+
 ## Visual
 
 - **Grayscale only.** Use Tailwind `neutral-*` shades. The one exception: if the brief says
@@ -22,6 +28,8 @@ The prototype exists to validate **structure and flow**. Visual polish is out of
 ## Behavior
 
 - **Every core flow must be clickable end to end.** Buttons and links in a flow must navigate.
+- **Every screen is registered** in `src/prototype/registry.ts` (see `04-prototype-system.md`). In-screen
+  buttons navigate with the target screen's registered route; never hardcode a route that is not in the registry.
 - Forms: fields are interactive, submit goes to the next step. No real validation beyond "required".
 - Elements outside the core flows can be inert; give them `title="Not in prototype"`.
 - No backend, no auth provider, no database. Fake login = a button that navigates.
@@ -33,7 +41,7 @@ The prototype exists to validate **structure and flow**. Visual polish is out of
 |---|---|
 | Responsive | Mobile-first. Check at 390px, 768px, 1280px. Nav collapses on mobile. |
 | Desktop only | Build for 1440px wide, min width 1280px. No mobile layout. |
-| Mobile only | Build at 390px. On wider screens, center the app inside a phone frame (`PhoneFrame` component). |
+| Mobile only | Build at 390px. On wider screens, center the app inside a phone frame (`PhoneFrame` component). Prototype Home stays full width, outside the frame. |
 | Mobile + desktop | Two layouts: under 768px and 1024px and above. Tablet can use the desktop layout. |
 
 ## Wireframe notes (optional)
@@ -41,3 +49,9 @@ The prototype exists to validate **structure and flow**. Visual polish is out of
 When a screen needs an explanation for reviewers ("this table will be paginated", "data comes from CRM"),
 use the `Note` component in `src/components/Note.tsx`. It renders a yellow sticky-note callout.
 This is the only non-gray element allowed.
+
+## Prototype tooling
+
+Prototype Home (`/`) and the flow bar above each screen are tooling, not product. They stay grayscale at every
+fidelity. Do not restyle them to match the product, and do not remove them. Reviewers can hide the flow bar with
+its **Hide** button during a demo.
