@@ -45,6 +45,9 @@ routing, flow navigation, and counts are all derived from it.
 
 Never:
 
+
+**All Prototype Screens is a visual gallery:** show the actual registered screen components side by side, grouped by user type and flow, including rendered variants. Names, descriptions, and route links alone are insufficient. The starter `ScreenRow` text list must be replaced when building product screens. Follow `guidelines/04-prototype-system.md` section 2B and the visual checks in `guidelines/08-ai-workflow.md`.
+
 - create a screen without registering it (every file in `src/screens/` must be in the registry)
 - maintain Prototype Flows and All Prototype Screens as separate lists, or hardcode flows/screens in any view
 - leave a screen without a flow unless it is explicitly `standalone: true`
