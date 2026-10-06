@@ -204,3 +204,12 @@ Updated
 ```
 
 Do not claim completion if integrity issues remain.
+
+
+## Visual gallery verification
+
+Before completion, verify that All Prototype Screens shows actual registered screen components as a side-by-side preview gallery, not a text-only list. Confirm that variants appear next to their parent without adding journey steps, and that standalone screens appear in their own visual group.
+
+Check that each preview matches its direct route and intended state, uses deterministic data, cannot mutate state or navigate while previewed, keeps embedded controls out of the keyboard order, and provides an accessible external `Open Screen` link. Check that modal and drawer states remain contained, tooling bars are excluded, and product styling is preserved. Visually inspect the gallery at desktop and mobile widths for legible previews, multiple side-by-side desktop screens, and no page-level horizontal overflow.
+
+Do not accept a text-only list, placeholder gallery, static screenshot gallery, or an unchanged starter `ScreenRow` implementation as complete.
