@@ -208,3 +208,12 @@ Use the minimum structure necessary to make the prototype understandable.
 Do not add filters, tabs, accordions, dashboards, summaries, or extra navigation simply because they are common patterns.
 
 Every UI element should have a clear reason to exist.
+
+
+## All Prototype Screens: visual review
+
+Show actual rendered interfaces side by side in a responsive grid inside each flow group; textual lists alone are insufficient. Keep step number and screen name above every preview, use consistent alignment and spacing, and place routes or technical metadata secondarily.
+
+Previews must stay large enough to recognize and compare adjacent interfaces. Use fewer columns for wide desktop screens instead of unreadable thumbnails, preserve the intended viewport and aspect ratio, and provide an `Open Screen` link for long screens. Modal, drawer, and error variants must visibly show their intended state inside their own preview rather than covering Prototype Home.
+
+Keep preview internals inert, including keyboard focus, while the external open-screen link remains accessible. At desktop widths verify multiple previews are visible together; at mobile widths verify labels and links remain usable without page-level horizontal overflow.
