@@ -254,3 +254,8 @@ The registry should be considered invalid when:
 - a screen exists in the product prototype but not in the registry
 
 Projects are encouraged to automate these checks when practical.
+
+
+## Visual preview derivation
+
+All Prototype Screens renders each visual preview from the same registered React `component` used by the interactive route. Preview grouping, step labels, state labels, direct links, and counts must remain derived from this registry. If a screen needs preview-specific configuration or deterministic demo data, extend the existing typed registry model deliberately and keep fixtures typed; never create a second screen catalog or duplicate product UI and business logic. See `04-prototype-system.md` for the gallery behavior.
