@@ -267,3 +267,18 @@ A prototype task is complete only when:
 - All Prototype Screens is correct
 - navigation is correct
 - related prototype metadata is correct
+
+
+## All Prototype Screens: visual gallery requirement
+
+All Prototype Screens must be a complete visual gallery of rendered prototype interfaces, shown side by side within each flow. A text list, table, route directory, or cards containing only names and descriptions does not satisfy this requirement.
+
+Render every preview from the same registered React component used by its interactive route. Do not create separately maintained mock screens, hand-built thumbnails, static screenshots, or generic placeholders in place of the interface. Each preview has the step number and screen name above it, plus an explicit, accessible `Open Screen` link.
+
+Group previews by user type and flow and arrange them in a responsive grid: show multiple screens side by side on desktop and reduce columns on narrow viewports while preserving legibility. Keep the intended viewport and aspect ratio when scaling. Do not force a desktop interface to reflow as mobile just to fit a gallery cell. Exclude FlowBar and Prototype Home tooling from previews, while preserving product styling inside them.
+
+Previews use deterministic demo data and show their intended state without requiring earlier steps. They are static for review: viewing or mounting them must not navigate, submit forms, mutate shared product state, or make external requests. Their embedded controls must be inert and excluded from keyboard focus; the external `Open Screen` link opens the interactive version.
+
+Registered variants such as error, empty, modal, and drawer states must appear as rendered previews beside their parent, labeled with the parent step and state. They do not add journey steps or alter `screenIds`. Standalone utility screens appear in their own visual group. Derive membership, labels, order, links, and counts from the existing registry; do not create a parallel catalog.
+
+The starter `PrototypeHome.tsx` uses a textual `ScreenRow` list. When product screens are built, replace that presentation with a reusable preview gallery while preserving the registry, routes, Prototype Flows, and navigation.
